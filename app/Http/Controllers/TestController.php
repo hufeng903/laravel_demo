@@ -28,61 +28,7 @@ class TestController extends Controller
      */
     public function index()
     {
-        //测试服务
-//         $test = App::make('test');
-//         $test->callMe('TestController');
 
-        $this->test->callMe('test');
-
-        //处理初始化数据
-        $question = Question::get(['id','le_1','le_2','le_3','le_4','diagnosis','lab_exam','content'])->toArray();
-        dd($question);
-
-        foreach ($question as $k => $v) {
-            $content = [];
-            if (empty($v['lab_exam'])) {
-                if (!empty($v['le_1'])) {
-                    $content[] = ['title' => $this->replace_str($v['le_1']),'img' => $v['le_2']];
-                }
-                if (!empty($v['le_3'])) {
-                    $content[] = ['title' => $this->replace_str($v['le_3']),'img' => $v['le_4']];
-                }
-            } else {
-                $content[] = ['title' => $this->replace_str($v['lab_exam']),'img' => null];
-            }
-
-            $question[$k]['content'] = ['lab_exam' => $content,'diagnosis' => $this->replace_str($v['diagnosis'])];
-            Question::whereId($v['id'])->update(['content' => json_encode($question[$k]['content'])]);
-        }
-
-
-        //处理诊断结果数据
-        $result = Question::get(['id','tr_1','tr_2','tr_3','tr_4','tr_result'])->toArray();
-        foreach ($result as $key => $v) {
-            $field = [];
-
-            if (!empty($v['tr_1'])) {
-                $field['desc'][] = ['text' => $this->replace_str($v['tr_1']),'img' => $v['tr_2']];
-            }
-            if (!empty($v['tr_3'])) {
-                $field['desc'][] = ['text' => $this->replace_str($v['tr_3']),'img' => $v['tr_4']];
-            }
-
-            if (!isset($field['desc'])) {
-                $field['desc'] = [];
-            }
-            if (!empty($v['tr_result'])) {
-                $field['treatment_result'] = $this->replace_str($v['tr_result']);
-            } else {
-                $field['treatment_result'] = '';
-            }
-
-            if (!empty($field)) {
-                Question::whereId($v['id'])->update(['field1' => json_encode($field)]);
-            }
-        }
-
-        dd($result);
     }
 
 
