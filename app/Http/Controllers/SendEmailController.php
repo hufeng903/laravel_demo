@@ -20,7 +20,7 @@ class SendEmailController extends Controller
         //可以添加抄送cc, 隐藏抄送bcc(也可以同时抄送，密送给多个邮箱，格式同to里面地址)
         //Mail::to(['address' => '789@qq.com'])->cc(['address' => '456@qq.com'])->bcc(['address' => '124@qq.com'])->send(new SendMail());
 
-        Mail::to(['address' => '851427094@qq.com'])->send(new SendMail());
+        Mail::to(['address' => '851427094@qq.com'])->send(new SendMail())->queue();
 
         return true;
     }
