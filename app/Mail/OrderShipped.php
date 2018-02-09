@@ -1,28 +1,24 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hu
- * Date: 2018/2/7
- * Time: 11:14
- */
 
 namespace App\Mail;
-
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendMail extends Mailable
+class OrderShipped extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
-     * SendMail constructor.
+     * Create a new message instance.
+     *
+     * @return void
      */
     public function __construct()
     {
-
+        //
     }
 
     /**
