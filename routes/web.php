@@ -16,3 +16,6 @@ Route::get('/', function () {
 });
 
 Route::get('/send-email','SendEmailController@send');
+Route::get('/iterator/fibonacci','IteratorController@fibonacci');
+Route::get('/iterator/scandir','IteratorController@scandir');
+Route::get('/heap/draw','HeapController@draw');
