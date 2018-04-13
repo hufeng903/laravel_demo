@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: hu
- * Date: 2017/9/18
- * Time: 16:30
+ * Date: 2018/4/13
+ * Time: 16:59
  */
 
 namespace App\Services;
@@ -11,10 +11,10 @@ namespace App\Services;
 
 use App\Contracts\TestContract;
 
-class TestService implements TestContract
+class TestContractOne implements TestContract
 {
     public function callMe()
     {
-        dd('Call Me From TestService');
+        dd('Call Me From TestContractOne');
     }
 }
