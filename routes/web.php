@@ -30,3 +30,6 @@ Route::get('/test-contract/index','TestContractController@index');
 
 //基础容器实现
 Route::get('/test-container/index','TestContainerController@index');
+
+//测试队列接口
+Route::get('/test-queue/index','TestQueueController@index');
