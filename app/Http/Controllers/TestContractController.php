@@ -17,6 +17,7 @@ class TestContractController extends Controller
 
     public function index()
     {
+        dd(app());
         return $this->interface->callMe();
     }
 }

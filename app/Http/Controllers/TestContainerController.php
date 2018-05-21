@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Logger;
 use App\Services\Bar;
 use App\Services\Bim;
 use App\Services\Foo;
+use App\Services\ProjectLog;
+use App\Services\SystemLogger;
 use App\Services\TestContainer;
+use App\Services\UserLogger;
 use Illuminate\Http\Request;
 
 class TestContainerController extends Controller
@@ -14,6 +18,8 @@ class TestContainerController extends Controller
 
     public function index()
     {
+        dd(app());
+
         $c = new TestContainer();
 
         //使用魔法方法__set
@@ -61,5 +67,35 @@ class TestContainerController extends Controller
 
 
         $foo->doSomething();
+    }
+
+
+    public function logger()
+    {
+        $usr_project_log = new ProjectLog(new UserLogger());
+
+        //记录用户日志
+        $usr_project_log->show('用户日志');
+
+
+        $system_project_log = new ProjectLog(new SystemLogger());
+
+        //记录系统日志
+        $system_project_log->show('系统日志');
+
+        return response()->json(['处理成功,返回成功']);
+    }
+
+
+    public function logger_v1()
+    {
+        //绑定接口到实现
+        app()->bind(Logger::class, function() {
+            return new UserLogger();
+        });
+
+        (new ProjectLog(app()->make(Logger::class)))->show('什么日志');
+
+        return response()->json(['处理成功,返回成功']);
     }
 }
