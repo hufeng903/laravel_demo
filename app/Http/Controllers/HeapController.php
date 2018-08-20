@@ -34,11 +34,9 @@ class HeapController extends Controller
 //        $h->insert(12);
 //        $h->insert(4);
 
-        dd($h, $h->current(), $h->top());
-
         for ($h->top(); $h->valid(); $h->next()) {
             list($parentId, $myId) = $h->current();
-            echo "$myId ($parentId)\n";
+            echo "$myId ($parentId)"."<br>";
         }
     }
 }
