@@ -1,4 +1,4 @@
-# laravel_demo
+# 基于laravel 功能实例
 1. App\Http\Controllers\SendEmailController 实现发送邮件功能 查看
 
 2. App\Http\Controllers\IteratorController iterator迭代器实现 斐波那契数列和文件后缀筛选功能
